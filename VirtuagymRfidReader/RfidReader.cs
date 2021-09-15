@@ -114,6 +114,7 @@ namespace VirtuagymRfidReader
         }
         #endregion
 
+        #region Timer / Worker
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             if (!_worker.IsBusy)
@@ -131,7 +132,7 @@ namespace VirtuagymRfidReader
             _isReading = true;
             SendCmd(Command.ReadTag);
         }
-
+        #endregion
 
         #region RFI Reader
         private bool SendCmd(Command cmd)
@@ -248,7 +249,6 @@ namespace VirtuagymRfidReader
             }
         }
         #endregion
-
     }
 
     public class Card
