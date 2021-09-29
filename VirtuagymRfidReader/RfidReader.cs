@@ -279,6 +279,10 @@ namespace VirtuagymRfidReader
             string tmp = String.Join("", tagHexNumber10);
             tagDec10Value = uint.Parse(tmp, System.Globalization.NumberStyles.HexNumber).ToString("D10");
 
+            //Workaround for lenght
+            while(tagDec10Value.Length > 10)
+                tagDec10Value = tagDec10Value.Substring(tagDec10Value.Length - 1, 1);
+
             //check if tag was readed
             isValidTag = Convert.ToInt64(tagDec10Value) <= 0 ? false : true;
 
