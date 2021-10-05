@@ -65,7 +65,8 @@ namespace VirtuagymRfidReader
                 else
                 {
                     RegistryKey rk = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-                    rk.SetValue(Application.ResourceAssembly.ManifestModule.Name, "\"" + Application.ResourceAssembly.Location + "\"");
+                    if(rk.GetValue(Application.ResourceAssembly.ManifestModule.Name) == null)
+                        rk.SetValue(Application.ResourceAssembly.ManifestModule.Name, "\"" + Application.ResourceAssembly.Location + "\"");
                 }
             }
             catch(Exception ex)
