@@ -76,5 +76,14 @@ namespace VirtuagymRfidReader.Properties {
                 return ((int)(this["ComPortTimeOutInMs"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AddToAutoStart {
+            get {
+                return ((bool)(this["AddToAutoStart"]));
+            }
+        }
     }
 }

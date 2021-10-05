@@ -44,14 +44,21 @@ namespace VirtuagymRfidReader
         #region Init
         public RfidReader(MainWindow frm,string deviceId, string writeToComPort, int repaitTimeInMs) : base()
         {
-            _frmMain = frm;
-            deviceID = deviceId;
-            _writeToPort = writeToComPort;
-            _repeatTime = repaitTimeInMs;
+            try
+            {
+                _frmMain = frm;
+                deviceID = deviceId;
+                _writeToPort = writeToComPort;
+                _repeatTime = repaitTimeInMs;
 
-            ConnectToDevice();
-            InitWorker();
-            InitTimer();
+                ConnectToDevice();
+                InitWorker();
+                InitTimer();
+            }
+            catch (Exception ex)
+            {
+                _frmMain.WriteToLog("Error on Init RfidReader()" + ex.Message, 3);
+            }
         }
 
         private void ConnectToDevice()
@@ -158,8 +165,13 @@ namespace VirtuagymRfidReader
             {
                 _frmMain.WriteToLog("Card reader disconnected!",2);
                 _timer.Stop();
-                _serialPortWrite.Close();
-                _myDevice.CloseDevice();
+                
+                if(_serialPortWrite != null)
+                    _serialPortWrite.Close();
+                
+                if(_myDevice != null)
+                    _myDevice.CloseDevice();
+
                 _isReading = false;
                 _lastRfidTag = String.Empty;
             }
