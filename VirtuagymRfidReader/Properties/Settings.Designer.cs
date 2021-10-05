@@ -85,5 +85,14 @@ namespace VirtuagymRfidReader.Properties {
                 return ((bool)(this["AddToAutoStart"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool CheckRFIDTagLength {
+            get {
+                return ((bool)(this["CheckRFIDTagLength"]));
+            }
+        }
     }
 }

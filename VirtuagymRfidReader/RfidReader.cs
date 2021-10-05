@@ -270,9 +270,33 @@ namespace VirtuagymRfidReader
         private string tagDec8Value;
         private bool isValidTag;
 
-        public string TagNumber_Hex { get { return hexNumberString; } }
-        public string TagNumber_10 { get { return tagDec10Value; } }
-        public string TagNumber_8 { get { return tagDec8Value; } }
+        public string TagNumber_Hex 
+        { 
+            get 
+            { 
+                return hexNumberString; 
+            } 
+        }
+        public string TagNumber_10 
+        { 
+            get 
+            {
+                if (Settings.Default.CheckRFIDTagLength)
+                {
+                    while (tagDec10Value.Length > 10)
+                        tagDec10Value = tagDec10Value.Substring(tagDec10Value.Length - 1, 1);
+                }
+
+                return tagDec10Value;
+            } 
+        }
+        public string TagNumber_8
+        { 
+            get
+            { 
+                return tagDec8Value;
+            }
+        }
         public bool IsValidTag { get { return isValidTag; } }
 
         public Card(byte[] cardData)
@@ -290,10 +314,6 @@ namespace VirtuagymRfidReader
             Array.Copy(tagHexData, 7, tagHexNumber10, 0, 3);
             string tmp = String.Join("", tagHexNumber10);
             tagDec10Value = uint.Parse(tmp, System.Globalization.NumberStyles.HexNumber).ToString("D10");
-
-            //Workaround for lenght
-            while(tagDec10Value.Length > 10)
-                tagDec10Value = tagDec10Value.Substring(tagDec10Value.Length - 1, 1);
 
             //check if tag was readed
             isValidTag = Convert.ToInt64(tagDec10Value) <= 0 ? false : true;
