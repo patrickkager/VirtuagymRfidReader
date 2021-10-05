@@ -9,7 +9,7 @@
       <Value Profile="(Default)">COM5</Value>
     </Setting>
     <Setting Name="RepaitTimeInMs" Type="System.Int32" Scope="Application">
-      <Value Profile="(Default)">500</Value>
+      <Value Profile="(Default)">750</Value>
     </Setting>
     <Setting Name="DebugMode" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
