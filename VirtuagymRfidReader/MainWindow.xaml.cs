@@ -29,9 +29,12 @@ namespace VirtuagymRfidReader
         private WindowState m_storedWindowState = WindowState.Normal;
         private System.Windows.Forms.NotifyIcon m_notifyIcon;
 
+
         public MainWindow()
         {
             InitializeComponent();
+
+            Environment.CurrentDirectory = System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath);
 
             m_notifyIcon = new System.Windows.Forms.NotifyIcon();
             m_notifyIcon.BalloonTipText = "Click the tray icon to show.";
