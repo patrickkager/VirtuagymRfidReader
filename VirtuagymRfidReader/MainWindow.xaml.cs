@@ -43,7 +43,7 @@ namespace VirtuagymRfidReader
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            AddToAutoStart();
+            //AddToAutoStart();
 
             if (String.IsNullOrEmpty(Settings.Default.DeviceID) == false)
                 m_rfidReader = new RfidReader(this, Settings.Default.DeviceID, Settings.Default.WriteToComPort, Settings.Default.RepaitTimeInMs);
@@ -135,7 +135,7 @@ namespace VirtuagymRfidReader
         /// <param name="clear"></param>
         public void WriteToLog(string text, int type = 1)
         {
-            string logFilePath = DateTime.Now.ToShortDateString().Replace(".", "") + "_RfidReader.log";
+            string logFilePath = DateTime.Now.ToString("ddMMyyyy") + "_RfidReader.log";
             string logText = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss") + " # ";
             try
             {
