@@ -80,7 +80,7 @@ namespace VirtuagymRfidReader
 
                 if (_myDevice == null)
                 {
-                    _frmMain.WriteToLog("Error on rfid reader not found!", 3);
+                    _frmMain.WriteToLog("Rfid reader '"+deviceID+"' not found!", 3);
                     return;
                 }
 
@@ -270,16 +270,16 @@ namespace VirtuagymRfidReader
         private string tagDec8Value;
         private bool isValidTag;
 
-        public string TagNumber_Hex 
-        { 
-            get 
-            { 
-                return hexNumberString; 
-            } 
+        public string TagNumber_Hex
+        {
+            get
+            {
+                return hexNumberString;
+            }
         }
-        public string TagNumber_10 
-        { 
-            get 
+        public string TagNumber_10
+        {
+            get
             {
                 if (Settings.Default.CheckRFIDTagLength)
                 {
@@ -288,12 +288,12 @@ namespace VirtuagymRfidReader
                 }
 
                 return tagDec10Value;
-            } 
+            }
         }
         public string TagNumber_8
-        { 
+        {
             get
-            { 
+            {
                 return tagDec8Value;
             }
         }

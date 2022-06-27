@@ -25,7 +25,7 @@ namespace VirtuagymRfidReader
     /// </summary>
     public partial class MainWindow : Window
     {
-        private RfidReader m_rfidReader;
+        private List<RfidReader> m_rfidReader;
         private WindowState m_storedWindowState = WindowState.Normal;
         private System.Windows.Forms.NotifyIcon m_notifyIcon;
 
@@ -34,6 +34,7 @@ namespace VirtuagymRfidReader
         {
             InitializeComponent();
 
+            m_rfidReader = new List<RfidReader>();
             Environment.CurrentDirectory = System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath);
 
             m_notifyIcon = new System.Windows.Forms.NotifyIcon();
@@ -49,9 +50,19 @@ namespace VirtuagymRfidReader
             //AddToAutoStart();
 
             if (String.IsNullOrEmpty(Settings.Default.DeviceID) == false)
-                m_rfidReader = new RfidReader(this, Settings.Default.DeviceID, Settings.Default.WriteToComPort, Settings.Default.RepaitTimeInMs);
+            {
+                string[] devices = Settings.Default.DeviceID.Split(new char[] {';'},StringSplitOptions.RemoveEmptyEntries);
+                string[] comport = Settings.Default.WriteToComPort.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                for (int i = 0; i < devices.Length; i++)
+                {
+                    m_rfidReader.Add(new RfidReader(this,devices[i],comport[i],Settings.Default.RepaitTimeInMs));
+                }
+            } 
             else
-                WriteToLog("DeviceID is missing!",3);
+            {
+                WriteToLog("DeviceID is missing!", 3);
+            }
+              
 
             if(Settings.Default.StartMinimized)
                 this.WindowState = WindowState.Minimized;
@@ -87,8 +98,8 @@ namespace VirtuagymRfidReader
             }
             else
             {
-                if(m_rfidReader != null)
-                    m_rfidReader._myDevice_Removed();
+                for (int i = 0; i < m_rfidReader.Count; i++)
+                    m_rfidReader[i]._myDevice_Removed();
 
                 m_notifyIcon.Dispose();
                 m_notifyIcon = null;

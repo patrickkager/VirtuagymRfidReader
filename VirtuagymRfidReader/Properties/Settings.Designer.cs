@@ -12,7 +12,7 @@ namespace VirtuagymRfidReader.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.1.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -25,7 +25,7 @@ namespace VirtuagymRfidReader.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("vid_0416&pid_b029")]
+        [global::System.Configuration.DefaultSettingValueAttribute("vid_0416&pid_b029;vid_0416&pid_b029")]
         public string DeviceID {
             get {
                 return ((string)(this["DeviceID"]));
@@ -34,7 +34,7 @@ namespace VirtuagymRfidReader.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("COM5")]
+        [global::System.Configuration.DefaultSettingValueAttribute("COM5;COM6")]
         public string WriteToComPort {
             get {
                 return ((string)(this["WriteToComPort"]));
